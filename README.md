@@ -6,7 +6,7 @@ Melzi, S. and Marin, R. and Musoni, P. and Bardon, F. and Tarini, M. and Castell
 <img src="teaser.jpg"
 </p>
   
-# 2023 - Update!
+### 2023 - Update!
 For recent versions of MATLAB the CPD module has some issues and makes MATLAB crash. We temporarily added a flag to exclude this module in order to complete the execution. 
 
 ## Contents
