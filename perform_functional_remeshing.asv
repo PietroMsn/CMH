@@ -1,4 +1,4 @@
-function [new, new2, times] = perform_functional_remeshing(M1, M2, landmarks, p2p, hands_radius, a_arap, delta_t, times, cpd_on)
+function [new, new2, times] = perform_functional_remeshing(M1, M2, landmarks, p2p, hands_radius, a_arap, delta_t, times, cpd_off)
 
     S1 = MESH('Src',M1.VERT,M1.TRIV);
     S2 = MESH('Tar',M2.VERT,M2.TRIV);
@@ -6,20 +6,16 @@ function [new, new2, times] = perform_functional_remeshing(M1, M2, landmarks, p2
     
     % run CPD on the local patches around the landmarks relative to the
     % hands
-    
+    fprintf('Applying Coherent Point Drift on local patches...\n')
     tCPD = tic;
-    if cpd_on
-        fprintf('Applying Coherent Point Drift on local patches...\n')
-        [p2pCPD,matches,P1,P2] = LocalPat(M1,M2,[landmarks(2,1),landmarks(2,2)] ...
-            ,p2p,hands_radius); 
-        [p2pCPD,matches,P1,P2] = LocalPat(M1,M2,[landmarks(5,1),landmarks(5,2)] ...
-            ,p2pCPD,hands_radius); 
-        new=M1.VERT(p2pCPD,:);
-        M3=MESH('New',new,M2.TRIV);
-    else
-        new = M1.VERT(p2p, :);
-    end
-
+    if 
+    % [p2pCPD,matches,P1,P2] = LocalPat(M1,M2,[landmarks(2,1),landmarks(2,2)] ...
+    %     ,p2p,hands_radius); 
+    % [p2pCPD,matches,P1,P2] = LocalPat(M1,M2,[landmarks(5,1),landmarks(5,2)] ...
+    %     ,p2pCPD,hands_radius); 
+    % new=M1.VERT(p2pCPD,:);
+    % M3=MESH('New',new,M2.TRIV);
+    new = M1.VERT(p2p, :);
     times = [times, toc(tCPD)];
     fprintf('done in %f seconds\n', times(end));
     

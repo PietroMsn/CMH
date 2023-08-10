@@ -40,6 +40,7 @@ timeTot = [];
 
 %% parameters
 visualize = 1; % put at 1 to visualize the plots
+cpd_on = 0; % put at 1 to activate the cpd module, some versions of MATLAB are not compatible
 % the number of eigenfunctuions used (excluding CMH)
 kM1 = 50; kM2 = 50; 
 % 1 to use the relative descriptor, 0 to not use it
@@ -91,7 +92,7 @@ end
 % calculates the remeshing pipeline using the maps evaluated before 
 %timeRem = tic;
 [new, new2, timeTot] = perform_functional_remeshing(M1, M2, landmarks, ...
-    CMH_p2p, hands_radius, a_arap, delta_t, timeTot);
+    CMH_p2p, hands_radius, a_arap, delta_t, timeTot, cpd_on);
 
 % timeTot = [timeTot, toc(timeRem)];
 % fprintf('      done %f \n', timeTot(end));
