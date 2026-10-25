@@ -30,6 +30,27 @@ You can run different couples of shapes by setting the paths in this file. You h
 
 Other directories contain results after each steps and other useful computations (e.g. FMAP correspondence, landmarks, hands and head patches).
   
+## Python version
+The whole pipeline is also available in Python, in the `cmh/` package. Install the dependencies (Python 3.10+) and run it with:
+```
+pip install -r requirements.txt
+python runme.py
+```
+`runme.py` has the same parameters as `runme.m` (landmarks are 0-based) and saves the remeshed shape in `results/remeshed.obj`. Use `--no-plot` to skip the plots and `--cpd` to enable the CPD module on the hands, which here uses [pycpd](https://github.com/siavashk/pycpd) and is slower than the MATLAB mex version.
+
+| MATLAB | Python |
+|---|---|
+| `getShape`, `load_shape`, `lb_basis_surface`, `scaling_shapes` | `cmh/geometry.py` |
+| `compute_CMH` | `cmh/basis.py` |
+| `waveKernelSignature`, `waveKernelMap`, `hks` | `cmh/descriptors.py` |
+| `compute_map_CMH`, `icp_refine` (`minConf_PQN` → L-BFGS) | `cmh/fmap.py` |
+| `arap_gradient` (gptoolbox) | `cmh/arap.py` |
+| `perform_functional_remeshing`, `arap_dato` | `cmh/remeshing.py` |
+| `LocalPat` + CPD2 | `cmh/local_patch.py` |
+| `plotCMH`, `plot_comparison_mh_cmh`, `plot_results` | `cmh/plotting.py` |
+
+Tests are in `tests/` (`python -m pytest`). The ones in `tests/test_against_matlab.py` compare each step with the MATLAB code: create their reference by running `matlab/export_reference.m` in MATLAB.
+
 ## Requirements
 This code is tested over Windows 10 64bit w\ Matlab 2019a and above. All the required packages are in the two following directories:
 ```

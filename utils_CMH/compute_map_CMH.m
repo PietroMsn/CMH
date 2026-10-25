@@ -1,4 +1,4 @@
-function [F_lb2, pF_lb2] = compute_map_CMH(lmh1,lmh2, landmarks,numEigsSrc,numEigsTar, L1, L2, DATO, MAGLIA, desc, D1, D2)
+function [F_lb2, pF_lb2, F_lb] = compute_map_CMH(lmh1,lmh2, landmarks,numEigsSrc,numEigsTar, L1, L2, DATO, MAGLIA, desc, D1, D2)
 
 Phi1 = lmh1(:,1:numEigsSrc); 
 Phi2 = lmh2(:,1:numEigsTar); 

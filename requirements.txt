@@ -1,0 +1,6 @@
+numpy
+scipy
+libigl>=2.6
+pycpd
+matplotlib
+pytest
